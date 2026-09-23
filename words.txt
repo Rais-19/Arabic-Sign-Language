@@ -1,0 +1,25 @@
+import urllib.request
+
+url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/ar/ar_50k.txt"
+urllib.request.urlretrieve(url, "arabic_freq_raw.txt")
+
+# Parse — format is "word frequency" per line
+with open('arabic_freq_raw.txt', 'r', encoding='utf-8') as f:
+    lines = f.readlines()
+
+# Extract words only (skip frequency number), keep top 5000
+words = []
+for line in lines[:5000]:
+    parts = line.strip().split()
+    if parts:
+        word = parts[0]
+        # Keep only pure Arabic
+        if all('\u0600' <= c <= '\u06FF' for c in word):
+            words.append(word)
+
+# Save
+with open('arabic_5k_words.txt', 'w', encoding='utf-8') as f:
+    f.write('\n'.join(words))
+
+print(f"Saved {len(words)} frequency-ranked words")
+print(f"Top 10: {words[:10]}")
