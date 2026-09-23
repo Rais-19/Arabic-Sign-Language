@@ -1,0 +1,26 @@
+# Virtual Environment
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Data & Generated Files
+data/
+data.pickle
+temp_speech.mp3
+conversation_*.txt
+arabic_freq_raw.txt
+
+# OS
+.DS_Store
+Thumbs.db
